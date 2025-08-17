@@ -90,6 +90,25 @@ public class ModItems {
                     })
                     .build());
     
+    // 彩色红石灯物品组
+    public static final ItemGroup COLORED_REDSTONE_LAMPS_GROUP = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(Main.MOD_ID, "colored_redstone_lamps"),
+            FabricItemGroup.builder()
+                    .displayName(Text.translatable("itemgroup.galaxy-remastered-edition.colored_redstone_lamps"))
+                    .icon(() -> new ItemStack(ModBlocks.RED_REDSTONE_LAMP))
+                    .entries((displayContext, entries) -> {
+                        entries.add(ModBlocks.WHITE_REDSTONE_LAMP);
+                        entries.add(ModBlocks.ORANGE_REDSTONE_LAMP);
+                        entries.add(ModBlocks.PINK_REDSTONE_LAMP);
+                        entries.add(ModBlocks.YELLOW_REDSTONE_LAMP);
+                        entries.add(ModBlocks.RED_REDSTONE_LAMP);
+                        entries.add(ModBlocks.PURPLE_REDSTONE_LAMP);
+                        entries.add(ModBlocks.BLUE_REDSTONE_LAMP);
+                        entries.add(ModBlocks.GREEN_REDSTONE_LAMP);
+                        entries.add(ModBlocks.BLACK_REDSTONE_LAMP);
+                    })
+                    .build());
+    
     public static void registerModItems() {
         Main.LOGGER.info("正在注册 " + Main.MOD_ID + " 的物品");
     }

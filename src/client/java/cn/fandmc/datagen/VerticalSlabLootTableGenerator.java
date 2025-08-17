@@ -1,18 +1,8 @@
-package cn.fandmc;
+package cn.fandmc.datagen;
 
 import cn.fandmc.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.function.ApplyBonusLootFunction;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
@@ -93,5 +83,16 @@ public class VerticalSlabLootTableGenerator extends FabricBlockLootTableProvider
         addDrop(ModBlocks.WAXED_EXPOSED_CUT_COPPER_VERTICAL_SLAB, slabDrops(ModBlocks.WAXED_EXPOSED_CUT_COPPER_VERTICAL_SLAB));
         addDrop(ModBlocks.WAXED_WEATHERED_CUT_COPPER_VERTICAL_SLAB, slabDrops(ModBlocks.WAXED_WEATHERED_CUT_COPPER_VERTICAL_SLAB));
         addDrop(ModBlocks.WAXED_OXIDIZED_CUT_COPPER_VERTICAL_SLAB, slabDrops(ModBlocks.WAXED_OXIDIZED_CUT_COPPER_VERTICAL_SLAB));
+        
+        // 彩色红石灯 - 掉落自身
+        addDrop(ModBlocks.WHITE_REDSTONE_LAMP);
+        addDrop(ModBlocks.ORANGE_REDSTONE_LAMP);
+        addDrop(ModBlocks.PINK_REDSTONE_LAMP);
+        addDrop(ModBlocks.YELLOW_REDSTONE_LAMP);
+        addDrop(ModBlocks.RED_REDSTONE_LAMP);
+        addDrop(ModBlocks.PURPLE_REDSTONE_LAMP);
+        addDrop(ModBlocks.BLUE_REDSTONE_LAMP);
+        addDrop(ModBlocks.GREEN_REDSTONE_LAMP);
+        addDrop(ModBlocks.BLACK_REDSTONE_LAMP);
     }
 }

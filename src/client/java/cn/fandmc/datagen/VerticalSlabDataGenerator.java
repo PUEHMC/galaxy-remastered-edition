@@ -1,4 +1,4 @@
-package cn.fandmc;
+package cn.fandmc.datagen;
 
 import cn.fandmc.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -85,10 +85,21 @@ public class VerticalSlabDataGenerator {
 			verticalSlabs.put(ModBlocks.DEEPSLATE_BRICK_VERTICAL_SLAB, "minecraft:block/deepslate_bricks");
 			verticalSlabs.put(ModBlocks.DEEPSLATE_TILE_VERTICAL_SLAB, "minecraft:block/deepslate_tiles");
 			
-			// 为每个竖半砖生成模型和方块状态
+			// 为每个竖半砖生成模型
 			for (Map.Entry<Block, String> entry : verticalSlabs.entrySet()) {
 				generateVerticalSlabModels(blockStateModelGenerator, entry.getKey(), entry.getValue());
 			}
+			
+			// 生成彩色红石灯
+			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.WHITE_REDSTONE_LAMP, "white");
+			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.ORANGE_REDSTONE_LAMP, "orange");
+			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.PINK_REDSTONE_LAMP, "pink");
+			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.YELLOW_REDSTONE_LAMP, "yellow");
+			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.RED_REDSTONE_LAMP, "red");
+			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.PURPLE_REDSTONE_LAMP, "purple");
+			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.BLUE_REDSTONE_LAMP, "blue");
+			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.GREEN_REDSTONE_LAMP, "green");
+			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.BLACK_REDSTONE_LAMP, "black");
 		}
 
 		@Override
@@ -193,6 +204,37 @@ public class VerticalSlabDataGenerator {
 			return model;
 		});
 	}
+		
+		private void generateColoredRedstoneLamp(BlockStateModelGenerator generator, net.minecraft.block.Block block, String color) {
+			Identifier offTexture = new Identifier("galaxy-remastered-edition", "block/" + color + "_redstone_lamp_off");
+			Identifier onTexture = new Identifier("galaxy-remastered-edition", "block/" + color + "_redstone_lamp_on");
+			
+			// 创建关闭状态的模型
+			Identifier offModel = Models.CUBE_ALL.upload(
+				ModelIds.getBlockModelId(block).withSuffixedPath("_off"),
+				TextureMap.all(offTexture),
+				generator.modelCollector
+			);
+			
+			// 创建开启状态的模型
+			Identifier onModel = Models.CUBE_ALL.upload(
+				ModelIds.getBlockModelId(block).withSuffixedPath("_on"),
+				TextureMap.all(onTexture),
+				generator.modelCollector
+			);
+			
+			// 生成方块状态
+			generator.blockStateCollector.accept(
+				VariantsBlockStateSupplier.create(block)
+					.coordinate(BlockStateVariantMap.create(net.minecraft.state.property.Properties.LIT)
+						.register(false, BlockStateVariant.create().put(VariantSettings.MODEL, offModel))
+						.register(true, BlockStateVariant.create().put(VariantSettings.MODEL, onModel))
+					)
+			);
+			
+			// 注册物品模型（使用关闭状态的模型）
+			generator.registerParentedItemModel(block, offModel);
+		}
 		
 		private static BlockStateSupplier createVerticalSlabBlockState(Block block, Identifier baseModel, Identifier northModel, Identifier northTopModel, Identifier southModel, Identifier southTopModel, Identifier eastModel, Identifier eastTopModel, Identifier westModel, Identifier westTopModel, Identifier doubleModel) {
 			return VariantsBlockStateSupplier.create(block)

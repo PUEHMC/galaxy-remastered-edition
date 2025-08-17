@@ -1,4 +1,4 @@
-package cn.fandmc;
+package cn.fandmc.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -14,7 +14,7 @@ public class GalaxyremasterededitionDataGenerator implements DataGeneratorEntryp
 		// 注册竖半砖标签数据生成器
 		pack.addProvider(VerticalSlabTagGenerator::new);
 		// 注册竖半砖配方数据生成器
-		pack.addProvider(VerticalSlabRecipeGenerator::new);
+        pack.addProvider(VerticalSlabRecipeGenerator::new);
 	}
 
 

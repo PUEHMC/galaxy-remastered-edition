@@ -132,6 +132,17 @@ public class ModBlocks {
     public static final Block WAXED_OXIDIZED_CUT_COPPER_VERTICAL_SLAB = registerBlock("waxed_oxidized_cut_copper_vertical_slab",
             AbstractBlock.Settings.copy(Blocks.WAXED_OXIDIZED_CUT_COPPER_SLAB));
     
+    // 彩色红石灯
+    public static final Block WHITE_REDSTONE_LAMP = registerColoredRedstoneLamp("white_redstone_lamp");
+    public static final Block ORANGE_REDSTONE_LAMP = registerColoredRedstoneLamp("orange_redstone_lamp");
+    public static final Block PINK_REDSTONE_LAMP = registerColoredRedstoneLamp("pink_redstone_lamp");
+    public static final Block YELLOW_REDSTONE_LAMP = registerColoredRedstoneLamp("yellow_redstone_lamp");
+    public static final Block RED_REDSTONE_LAMP = registerColoredRedstoneLamp("red_redstone_lamp");
+    public static final Block PURPLE_REDSTONE_LAMP = registerColoredRedstoneLamp("purple_redstone_lamp");
+    public static final Block BLUE_REDSTONE_LAMP = registerColoredRedstoneLamp("blue_redstone_lamp");
+    public static final Block GREEN_REDSTONE_LAMP = registerColoredRedstoneLamp("green_redstone_lamp");
+    public static final Block BLACK_REDSTONE_LAMP = registerColoredRedstoneLamp("black_redstone_lamp");
+    
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Main.MOD_ID, name), block);
@@ -139,6 +150,12 @@ public class ModBlocks {
     
     private static Block registerBlock(String name, AbstractBlock.Settings settings) {
         Block block = new VerticalSlabBlock(settings);
+        registerBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, new Identifier(Main.MOD_ID, name), block);
+    }
+    
+    private static Block registerColoredRedstoneLamp(String name) {
+        Block block = new ColoredRedstoneLampBlock(AbstractBlock.Settings.copy(Blocks.REDSTONE_LAMP));
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Main.MOD_ID, name), block);
     }

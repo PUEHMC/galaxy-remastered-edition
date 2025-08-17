@@ -1,4 +1,4 @@
-package cn.fandmc;
+package cn.fandmc.datagen;
 
 import cn.fandmc.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
