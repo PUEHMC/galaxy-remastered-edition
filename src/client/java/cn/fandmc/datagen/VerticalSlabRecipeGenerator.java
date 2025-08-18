@@ -105,6 +105,9 @@ public class VerticalSlabRecipeGenerator extends FabricRecipeProvider {
         
         // 创建金属块配方
         createMetalBlockRecipes(exporter);
+        
+        // 创建铝线配方
+        createAluminumWireRecipe(exporter);
     }
     
     private void createVerticalSlabRecipes(Consumer<RecipeJsonProvider> exporter, ItemConvertible input, Block output, String name) {
@@ -406,5 +409,14 @@ public class VerticalSlabRecipeGenerator extends FabricRecipeProvider {
             .input(ModBlocks.METEORIC_IRON_BLOCK)
             .criterion(hasItem(ModBlocks.METEORIC_IRON_BLOCK), conditionsFromItem(ModBlocks.METEORIC_IRON_BLOCK))
             .offerTo(exporter, "meteoric_iron_ingot_from_block");
+    }
+    
+    private void createAluminumWireRecipe(Consumer<RecipeJsonProvider> exporter) {
+        // 铝线配方 - 3个铝锭合成8个铝线
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.ALUMINUM_WIRE, 8)
+            .pattern("AAA")
+            .input('A', ModItems.ALUMINUM_INGOT)
+            .criterion(hasItem(ModItems.ALUMINUM_INGOT), conditionsFromItem(ModItems.ALUMINUM_INGOT))
+            .offerTo(exporter);
     }
 }

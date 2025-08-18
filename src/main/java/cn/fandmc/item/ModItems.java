@@ -149,6 +149,7 @@ public class ModItems {
                     .icon(() -> new ItemStack(ModBlocks.BLAST_PROOF_GLASS))
                     .entries((displayContext, entries) -> {
                         entries.add(ModBlocks.BLAST_PROOF_GLASS);
+                        entries.add(ModBlocks.ALUMINUM_WIRE);
                         entries.add(ModBlocks.ALUMINUM_ORE);
                         entries.add(ModBlocks.TIN_ORE);
                         entries.add(ModBlocks.SILICON_ORE);

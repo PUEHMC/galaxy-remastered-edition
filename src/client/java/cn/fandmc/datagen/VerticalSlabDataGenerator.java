@@ -123,6 +123,9 @@ public class VerticalSlabDataGenerator {
             blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SILICON_BLOCK);
             blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TIN_BLOCK);
             blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.METEORIC_IRON_BLOCK);
+            
+            // 生成铝线方块模型
+            generateAluminumWireModels(blockStateModelGenerator);
 		}
 
 		@Override
@@ -131,6 +134,8 @@ public class VerticalSlabDataGenerator {
 			
 			// 生成铜质导线物品模型
             itemModelGenerator.register(ModItems.COPPER_WIRE, Models.GENERATED);
+            
+            // 铝线物品模型已在generateAluminumWireModels中生成
             
             // 生成铝锭物品模型
             itemModelGenerator.register(ModItems.ALUMINUM_INGOT, Models.GENERATED);
@@ -249,6 +254,18 @@ public class VerticalSlabDataGenerator {
 		});
 	}
 		
+		private void generateAluminumWireModels(BlockStateModelGenerator generator) {
+			// 铝线模型文件已手动创建，只生成方块状态和物品模型
+			Identifier centerModel = new Identifier("galaxy-remastered-edition", "block/aluminum_wire_center");
+			Identifier sideModel = new Identifier("galaxy-remastered-edition", "block/aluminum_wire_side");
+			
+			// 生成方块状态文件
+			generator.blockStateCollector.accept(createAluminumWireBlockState(ModBlocks.ALUMINUM_WIRE, centerModel, sideModel));
+			
+			// 注册物品模型
+			generator.registerParentedItemModel(ModBlocks.ALUMINUM_WIRE, centerModel);
+		}
+		
 		private void generateColoredRedstoneLamp(BlockStateModelGenerator generator, net.minecraft.block.Block block, String color) {
 			Identifier offTexture = new Identifier("galaxy-remastered-edition", "block/" + color + "_redstone_lamp_off");
 			Identifier onTexture = new Identifier("galaxy-remastered-edition", "block/" + color + "_redstone_lamp_on");
@@ -278,6 +295,11 @@ public class VerticalSlabDataGenerator {
 			
 			// 注册物品模型（使用关闭状态的模型）
 			generator.registerParentedItemModel(block, offModel);
+		}
+		
+		private static BlockStateSupplier createAluminumWireBlockState(Block block, Identifier centerModel, Identifier sideModel) {
+			// 铝线使用连接属性，生成简单的方块状态
+			return VariantsBlockStateSupplier.create(block, BlockStateVariant.create().put(VariantSettings.MODEL, centerModel));
 		}
 		
 		private static BlockStateSupplier createVerticalSlabBlockState(Block block, Identifier baseModel, Identifier northModel, Identifier northTopModel, Identifier southModel, Identifier southTopModel, Identifier eastModel, Identifier eastTopModel, Identifier westModel, Identifier westTopModel, Identifier doubleModel) {

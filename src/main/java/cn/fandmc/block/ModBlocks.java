@@ -175,6 +175,10 @@ public class ModBlocks {
     public static final Block METEORIC_IRON_BLOCK = registerBlock("meteoric_iron_block",
             new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
     
+    // 铝线
+    public static final Block ALUMINUM_WIRE = registerBlock("aluminum_wire",
+            new AluminumWireBlock(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).nonOpaque()));
+    
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Main.MOD_ID, name), block);
