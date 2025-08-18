@@ -69,7 +69,27 @@ public class VerticalSlabTagGenerator extends FabricTagProvider.BlockTagProvider
             .add(ModBlocks.WAXED_CUT_COPPER_VERTICAL_SLAB)
             .add(ModBlocks.WAXED_EXPOSED_CUT_COPPER_VERTICAL_SLAB)
             .add(ModBlocks.WAXED_WEATHERED_CUT_COPPER_VERTICAL_SLAB)
-            .add(ModBlocks.WAXED_OXIDIZED_CUT_COPPER_VERTICAL_SLAB);
+            .add(ModBlocks.WAXED_OXIDIZED_CUT_COPPER_VERTICAL_SLAB)
+            .add(ModBlocks.BLAST_PROOF_GLASS)
+            .add(ModBlocks.ALUMINUM_ORE)
+            .add(ModBlocks.TIN_ORE)
+            .add(ModBlocks.SILICON_ORE)
+            .add(ModBlocks.COPPER_ORE)
+            .add(ModBlocks.ALUMINUM_BLOCK)
+            .add(ModBlocks.COPPER_BLOCK)
+            .add(ModBlocks.SILICON_BLOCK)
+            .add(ModBlocks.TIN_BLOCK);
+        
+        // 防爆玻璃需要铁镐挖掘
+        getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
+            .add(ModBlocks.BLAST_PROOF_GLASS);
+        
+        // 铝矿石、锡矿石、硅矿石和铜矿石需要石镐挖掘
+        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
+            .add(ModBlocks.ALUMINUM_ORE)
+            .add(ModBlocks.TIN_ORE)
+            .add(ModBlocks.SILICON_ORE)
+            .add(ModBlocks.COPPER_ORE);
         
         // 添加到半砖标签
         getOrCreateTagBuilder(BlockTags.SLABS)

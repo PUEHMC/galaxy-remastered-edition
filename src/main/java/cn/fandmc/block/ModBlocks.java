@@ -143,6 +143,36 @@ public class ModBlocks {
     public static final Block GREEN_REDSTONE_LAMP = registerColoredRedstoneLamp("green_redstone_lamp");
     public static final Block BLACK_REDSTONE_LAMP = registerColoredRedstoneLamp("black_redstone_lamp");
     
+    // 防爆玻璃
+    public static final Block BLAST_PROOF_GLASS = registerBlock("blast_proof_glass",
+            new BlastProofGlassBlock(AbstractBlock.Settings.copy(Blocks.GLASS).resistance(1200.0f).hardness(5.0f)));
+    
+    // 铝矿石
+    public static final Block ALUMINUM_ORE = registerBlock("aluminum_ore",
+            new Block(AbstractBlock.Settings.copy(Blocks.IRON_ORE)));
+    
+    // 锡矿石
+    public static final Block TIN_ORE = registerBlock("tin_ore",
+            new Block(AbstractBlock.Settings.copy(Blocks.IRON_ORE)));
+    
+    // 硅矿石
+    public static final Block SILICON_ORE = registerBlock("silicon_ore",
+            new Block(AbstractBlock.Settings.copy(Blocks.IRON_ORE)));
+    
+    // 铜矿石
+    public static final Block COPPER_ORE = registerBlock("copper_ore",
+            new Block(AbstractBlock.Settings.copy(Blocks.COPPER_ORE)));
+    
+    // 金属块
+    public static final Block ALUMINUM_BLOCK = registerBlock("aluminum_block",
+            new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
+    public static final Block COPPER_BLOCK = registerBlock("copper_block",
+            new Block(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK)));
+    public static final Block SILICON_BLOCK = registerBlock("silicon_block",
+            new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
+    public static final Block TIN_BLOCK = registerBlock("tin_block",
+            new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
+    
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Main.MOD_ID, name), block);

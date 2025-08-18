@@ -3,6 +3,7 @@ package cn.fandmc.item;
 import cn.fandmc.Main;
 import cn.fandmc.block.ModBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -11,6 +12,20 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
+    // 铜质导线物品
+    public static final Item COPPER_WIRE = registerItem("copper_wire", new Item(new Item.Settings()));
+    // 铝锭物品
+    public static final Item ALUMINUM_INGOT = registerItem("aluminum_ingot", new Item(new Item.Settings()));
+    // 铜锭物品
+    public static final Item COPPER_INGOT = registerItem("copper_ingot", new Item(new Item.Settings()));
+    // 锡锭物品
+    public static final Item TIN_INGOT = registerItem("tin_ingot", new Item(new Item.Settings()));
+    // 硅锭物品
+    public static final Item SILICON_INGOT = registerItem("silicon_ingot", new Item(new Item.Settings()));
+    // 原硅物品
+    public static final Item RAW_SILICON = registerItem("raw_silicon", new Item(new Item.Settings()));
+    // 原铜物品
+    public static final Item RAW_COPPER = registerItem("raw_copper", new Item(new Item.Settings()));
     // 竖半砖物品组
     public static final ItemGroup VERTICAL_SLABS_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(Main.MOD_ID, "vertical_slabs"),
@@ -108,6 +123,46 @@ public class ModItems {
                         entries.add(ModBlocks.BLACK_REDSTONE_LAMP);
                     })
                     .build());
+    
+    // 线材和原材料物品组
+    public static final ItemGroup WIRES_AND_MATERIALS_GROUP = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(Main.MOD_ID, "wires_and_materials"),
+            FabricItemGroup.builder()
+                    .displayName(Text.translatable("itemgroup.galaxy-remastered-edition.wires_and_materials"))
+                    .icon(() -> new ItemStack(COPPER_WIRE))
+                    .entries((displayContext, entries) -> {
+                        entries.add(COPPER_WIRE);
+                        entries.add(ALUMINUM_INGOT);
+                        entries.add(COPPER_INGOT);
+                        entries.add(TIN_INGOT);
+                        entries.add(SILICON_INGOT);
+                        entries.add(RAW_SILICON);
+                        entries.add(RAW_COPPER);
+                    })
+                    .build());
+
+    // 星系-方块组
+    public static final ItemGroup GALAXY_BLOCKS_GROUP = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(Main.MOD_ID, "galaxy_blocks"),
+            FabricItemGroup.builder()
+                    .displayName(Text.translatable("itemgroup.galaxy-remastered-edition.galaxy_blocks"))
+                    .icon(() -> new ItemStack(ModBlocks.BLAST_PROOF_GLASS))
+                    .entries((displayContext, entries) -> {
+                        entries.add(ModBlocks.BLAST_PROOF_GLASS);
+                        entries.add(ModBlocks.ALUMINUM_ORE);
+                        entries.add(ModBlocks.TIN_ORE);
+                        entries.add(ModBlocks.SILICON_ORE);
+                        entries.add(ModBlocks.COPPER_ORE);
+                        entries.add(ModBlocks.ALUMINUM_BLOCK);
+                        entries.add(ModBlocks.COPPER_BLOCK);
+                        entries.add(ModBlocks.SILICON_BLOCK);
+                        entries.add(ModBlocks.TIN_BLOCK);
+                    })
+                    .build());
+
+    private static Item registerItem(String name, Item item) {
+        return Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, name), item);
+    }
     
     public static void registerModItems() {
         Main.LOGGER.info("正在注册 " + Main.MOD_ID + " 的物品");

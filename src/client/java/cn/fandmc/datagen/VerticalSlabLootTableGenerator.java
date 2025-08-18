@@ -1,6 +1,7 @@
 package cn.fandmc.datagen;
 
 import cn.fandmc.block.ModBlocks;
+import cn.fandmc.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -94,5 +95,26 @@ public class VerticalSlabLootTableGenerator extends FabricBlockLootTableProvider
         addDrop(ModBlocks.BLUE_REDSTONE_LAMP);
         addDrop(ModBlocks.GREEN_REDSTONE_LAMP);
         addDrop(ModBlocks.BLACK_REDSTONE_LAMP);
+        
+        // 防爆玻璃 - 掉落自身
+        addDrop(ModBlocks.BLAST_PROOF_GLASS);
+        
+        // 铝矿石 - 掉落自身
+        addDrop(ModBlocks.ALUMINUM_ORE);
+        
+        // 锡矿石 - 掉落自身
+        addDrop(ModBlocks.TIN_ORE);
+        
+        // 硅矿石 - 掉落自身
+        addDrop(ModBlocks.SILICON_ORE);
+        
+        // 铜矿石 - 掉落自身
+        addDrop(ModBlocks.COPPER_ORE);
+        
+        // 金属块 - 掉落自身
+        addDrop(ModBlocks.ALUMINUM_BLOCK);
+        addDrop(ModBlocks.COPPER_BLOCK);
+        addDrop(ModBlocks.SILICON_BLOCK);
+        addDrop(ModBlocks.TIN_BLOCK);
     }
 }

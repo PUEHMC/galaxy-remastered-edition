@@ -1,6 +1,7 @@
 package cn.fandmc.datagen;
 
 import cn.fandmc.block.ModBlocks;
+import cn.fandmc.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
@@ -90,21 +91,63 @@ public class VerticalSlabDataGenerator {
 				generateVerticalSlabModels(blockStateModelGenerator, entry.getKey(), entry.getValue());
 			}
 			
-			// 生成彩色红石灯
-			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.WHITE_REDSTONE_LAMP, "white");
-			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.ORANGE_REDSTONE_LAMP, "orange");
-			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.PINK_REDSTONE_LAMP, "pink");
-			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.YELLOW_REDSTONE_LAMP, "yellow");
-			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.RED_REDSTONE_LAMP, "red");
-			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.PURPLE_REDSTONE_LAMP, "purple");
-			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.BLUE_REDSTONE_LAMP, "blue");
-			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.GREEN_REDSTONE_LAMP, "green");
-			generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.BLACK_REDSTONE_LAMP, "black");
+			// 生成彩色红石灯模型
+            generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.WHITE_REDSTONE_LAMP, "white");
+            generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.ORANGE_REDSTONE_LAMP, "orange");
+            generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.PINK_REDSTONE_LAMP, "pink");
+            generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.YELLOW_REDSTONE_LAMP, "yellow");
+            generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.RED_REDSTONE_LAMP, "red");
+            generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.PURPLE_REDSTONE_LAMP, "purple");
+            generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.BLUE_REDSTONE_LAMP, "blue");
+            generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.GREEN_REDSTONE_LAMP, "green");
+            generateColoredRedstoneLamp(blockStateModelGenerator, ModBlocks.BLACK_REDSTONE_LAMP, "black");
+            
+            // 生成防爆玻璃模型
+            blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BLAST_PROOF_GLASS);
+            
+            // 生成铝矿石模型
+            blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ALUMINUM_ORE);
+            
+            // 生成锡矿石模型
+            blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TIN_ORE);
+            
+            // 生成硅矿石模型
+            blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SILICON_ORE);
+            
+            // 生成铜矿石模型
+            blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.COPPER_ORE);
+            
+            // 生成金属块模型
+            blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ALUMINUM_BLOCK);
+            blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.COPPER_BLOCK);
+            blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SILICON_BLOCK);
+            blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TIN_BLOCK);
 		}
 
 		@Override
 		public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 			// 物品模型会自动从方块模型继承
+			
+			// 生成铜质导线物品模型
+            itemModelGenerator.register(ModItems.COPPER_WIRE, Models.GENERATED);
+            
+            // 生成铝锭物品模型
+            itemModelGenerator.register(ModItems.ALUMINUM_INGOT, Models.GENERATED);
+            
+            // 生成铜锭物品模型
+            itemModelGenerator.register(ModItems.COPPER_INGOT, Models.GENERATED);
+            
+            // 生成锡锭物品模型
+            itemModelGenerator.register(ModItems.TIN_INGOT, Models.GENERATED);
+            
+            // 生成硅锭物品模型
+            itemModelGenerator.register(ModItems.SILICON_INGOT, Models.GENERATED);
+            
+            // 生成原硅物品模型
+            itemModelGenerator.register(ModItems.RAW_SILICON, Models.GENERATED);
+            
+            // 生成原铜物品模型
+            itemModelGenerator.register(ModItems.RAW_COPPER, Models.GENERATED);
 		}
 		
 		private void generateVerticalSlabModels(BlockStateModelGenerator generator, Block block, String texture) {
