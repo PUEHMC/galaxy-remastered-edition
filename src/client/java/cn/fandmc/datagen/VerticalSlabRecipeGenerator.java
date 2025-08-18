@@ -12,6 +12,7 @@ import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.SingleItemRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 
@@ -96,11 +97,11 @@ public class VerticalSlabRecipeGenerator extends FabricRecipeProvider {
         // 生成锡锭熔炉配方
         createTinIngotRecipe(exporter);
         
-        // 创建硅锭配方
-        createSiliconIngotRecipe(exporter);
-        
         // 创建铜锭配方
         createCopperIngotRecipe(exporter);
+        
+        // 创建陨铁锭配方
+        createMeteoricIronIngotRecipe(exporter);
         
         // 创建金属块配方
         createMetalBlockRecipes(exporter);
@@ -289,45 +290,7 @@ public class VerticalSlabRecipeGenerator extends FabricRecipeProvider {
             100, 
             "tin_ingot");
     }
-    
-    private void createSiliconIngotRecipe(Consumer<RecipeJsonProvider> exporter) {
-        // 熔炉配方 - 硅矿石烧制成原硅
-        offerSmelting(exporter, 
-            java.util.List.of(ModBlocks.SILICON_ORE), 
-            RecipeCategory.MISC, 
-            ModItems.RAW_SILICON, 
-            0.7f, 
-            200, 
-            "raw_silicon");
-        
-        // 高炉配方 - 硅矿石烧制成原硅（更快）
-        offerBlasting(exporter, 
-            java.util.List.of(ModBlocks.SILICON_ORE), 
-            RecipeCategory.MISC, 
-            ModItems.RAW_SILICON, 
-            0.7f, 
-            100, 
-            "raw_silicon");
-            
-        // 熔炉配方 - 原硅烧制成硅锭
-        offerSmelting(exporter, 
-            java.util.List.of(ModItems.RAW_SILICON), 
-            RecipeCategory.MISC, 
-            ModItems.SILICON_INGOT, 
-            0.7f, 
-            200, 
-            "silicon_ingot");
-        
-        // 高炉配方 - 原硅烧制成硅锭（更快）
-        offerBlasting(exporter, 
-            java.util.List.of(ModItems.RAW_SILICON), 
-            RecipeCategory.MISC, 
-            ModItems.SILICON_INGOT, 
-            0.7f, 
-            100, 
-            "silicon_ingot");
-    }
-    
+
     private void createCopperIngotRecipe(Consumer<RecipeJsonProvider> exporter) {
         // 熔炉配方 - 铜矿石烧制成铜锭
         offerSmelting(exporter, 
@@ -346,6 +309,26 @@ public class VerticalSlabRecipeGenerator extends FabricRecipeProvider {
             0.7f, 
             100, 
             "copper_ingot_from_ore");
+    }
+    
+    private void createMeteoricIronIngotRecipe(Consumer<RecipeJsonProvider> exporter) {
+        // 熔炉配方 - 原生陨铁烧制成陨铁锭
+        offerSmelting(exporter, 
+            java.util.List.of(ModItems.RAW_METEORIC_IRON), 
+            RecipeCategory.MISC, 
+            ModItems.METEORIC_IRON_INGOT, 
+            0.7f, 
+            200, 
+            "meteoric_iron_ingot");
+        
+        // 高炉配方 - 原生陨铁烧制成陨铁锭（更快）
+        offerBlasting(exporter, 
+            java.util.List.of(ModItems.RAW_METEORIC_IRON), 
+            RecipeCategory.MISC, 
+            ModItems.METEORIC_IRON_INGOT, 
+            0.7f, 
+            100, 
+            "meteoric_iron_ingot");
     }
     
     private void createMetalBlockRecipes(Consumer<RecipeJsonProvider> exporter) {
@@ -384,15 +367,15 @@ public class VerticalSlabRecipeGenerator extends FabricRecipeProvider {
             .pattern("SSS")
             .pattern("SSS")
             .pattern("SSS")
-            .input('S', ModItems.SILICON_INGOT)
-            .criterion(hasItem(ModItems.SILICON_INGOT), conditionsFromItem(ModItems.SILICON_INGOT))
+            .input('S', ModItems.SILICON_RAW)
+            .criterion(hasItem(ModItems.SILICON_RAW), conditionsFromItem(ModItems.SILICON_RAW))
             .offerTo(exporter);
         
         // 硅块分解配方 - 1个硅块分解为9个硅锭
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.SILICON_INGOT, 9)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.SILICON_RAW, 9)
             .input(ModBlocks.SILICON_BLOCK)
             .criterion(hasItem(ModBlocks.SILICON_BLOCK), conditionsFromItem(ModBlocks.SILICON_BLOCK))
-            .offerTo(exporter, "silicon_ingot_from_block");
+            .offerTo(exporter, "silicon_raw_from_block");
         
         // 锡块配方 - 9个锡锭合成1个锡块
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.TIN_BLOCK)
@@ -408,5 +391,20 @@ public class VerticalSlabRecipeGenerator extends FabricRecipeProvider {
             .input(ModBlocks.TIN_BLOCK)
             .criterion(hasItem(ModBlocks.TIN_BLOCK), conditionsFromItem(ModBlocks.TIN_BLOCK))
             .offerTo(exporter, "tin_ingot_from_block");
+        
+        // 陨铁块配方 - 9个陨铁锭合成1个陨铁块
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.METEORIC_IRON_BLOCK)
+            .pattern("MMM")
+            .pattern("MMM")
+            .pattern("MMM")
+            .input('M', ModItems.METEORIC_IRON_INGOT)
+            .criterion(hasItem(ModItems.METEORIC_IRON_INGOT), conditionsFromItem(ModItems.METEORIC_IRON_INGOT))
+            .offerTo(exporter);
+        
+        // 陨铁块分解配方 - 1个陨铁块分解为9个陨铁锭
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.METEORIC_IRON_INGOT, 9)
+            .input(ModBlocks.METEORIC_IRON_BLOCK)
+            .criterion(hasItem(ModBlocks.METEORIC_IRON_BLOCK), conditionsFromItem(ModBlocks.METEORIC_IRON_BLOCK))
+            .offerTo(exporter, "meteoric_iron_ingot_from_block");
     }
 }

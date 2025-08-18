@@ -172,6 +172,8 @@ public class ModBlocks {
             new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
     public static final Block TIN_BLOCK = registerBlock("tin_block",
             new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
+    public static final Block METEORIC_IRON_BLOCK = registerBlock("meteoric_iron_block",
+            new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
     
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

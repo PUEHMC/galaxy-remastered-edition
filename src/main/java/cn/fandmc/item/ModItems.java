@@ -20,12 +20,12 @@ public class ModItems {
     public static final Item COPPER_INGOT = registerItem("copper_ingot", new Item(new Item.Settings()));
     // 锡锭物品
     public static final Item TIN_INGOT = registerItem("tin_ingot", new Item(new Item.Settings()));
-    // 硅锭物品
-    public static final Item SILICON_INGOT = registerItem("silicon_ingot", new Item(new Item.Settings()));
     // 原硅物品
-    public static final Item RAW_SILICON = registerItem("raw_silicon", new Item(new Item.Settings()));
-    // 原铜物品
-    public static final Item RAW_COPPER = registerItem("raw_copper", new Item(new Item.Settings()));
+    public static final Item SILICON_RAW = registerItem("silicon_raw", new Item(new Item.Settings()));
+    // 原生陨铁物品
+    public static final Item RAW_METEORIC_IRON = registerItem("meteoric_iron_raw", new Item(new Item.Settings()));
+    // 陨铁锭物品
+    public static final Item METEORIC_IRON_INGOT = registerItem("meteoric_iron_ingot", new Item(new Item.Settings()));
     // 竖半砖物品组
     public static final ItemGroup VERTICAL_SLABS_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(Main.MOD_ID, "vertical_slabs"),
@@ -135,9 +135,9 @@ public class ModItems {
                         entries.add(ALUMINUM_INGOT);
                         entries.add(COPPER_INGOT);
                         entries.add(TIN_INGOT);
-                        entries.add(SILICON_INGOT);
-                        entries.add(RAW_SILICON);
-                        entries.add(RAW_COPPER);
+                        entries.add(SILICON_RAW);
+                        entries.add(RAW_METEORIC_IRON);
+                        entries.add(METEORIC_IRON_INGOT);
                     })
                     .build());
 
@@ -157,6 +157,7 @@ public class ModItems {
                         entries.add(ModBlocks.COPPER_BLOCK);
                         entries.add(ModBlocks.SILICON_BLOCK);
                         entries.add(ModBlocks.TIN_BLOCK);
+                        entries.add(ModBlocks.METEORIC_IRON_BLOCK);
                     })
                     .build());
 

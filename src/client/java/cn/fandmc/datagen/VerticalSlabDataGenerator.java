@@ -122,6 +122,7 @@ public class VerticalSlabDataGenerator {
             blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.COPPER_BLOCK);
             blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SILICON_BLOCK);
             blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TIN_BLOCK);
+            blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.METEORIC_IRON_BLOCK);
 		}
 
 		@Override
@@ -140,14 +141,14 @@ public class VerticalSlabDataGenerator {
             // 生成锡锭物品模型
             itemModelGenerator.register(ModItems.TIN_INGOT, Models.GENERATED);
             
-            // 生成硅锭物品模型
-            itemModelGenerator.register(ModItems.SILICON_INGOT, Models.GENERATED);
-            
             // 生成原硅物品模型
-            itemModelGenerator.register(ModItems.RAW_SILICON, Models.GENERATED);
+            itemModelGenerator.register(ModItems.SILICON_RAW, Models.GENERATED);
             
-            // 生成原铜物品模型
-            itemModelGenerator.register(ModItems.RAW_COPPER, Models.GENERATED);
+            // 生成原生陨铁物品模型
+            itemModelGenerator.register(ModItems.RAW_METEORIC_IRON, Models.GENERATED);
+            
+            // 生成陨铁锭物品模型
+            itemModelGenerator.register(ModItems.METEORIC_IRON_INGOT, Models.GENERATED);
 		}
 		
 		private void generateVerticalSlabModels(BlockStateModelGenerator generator, Block block, String texture) {
