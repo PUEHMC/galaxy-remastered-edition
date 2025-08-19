@@ -119,5 +119,8 @@ public class VerticalSlabLootTableGenerator extends FabricBlockLootTableProvider
         
         // 铝线 - 掉落自身
         addDrop(ModBlocks.ALUMINUM_WIRE);
+        
+        // 元件制造台 - 掉落自身
+        addDrop(ModBlocks.CIRCUIT_FABRICATOR);
     }
 }

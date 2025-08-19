@@ -150,6 +150,7 @@ public class ModItems {
                     .entries((displayContext, entries) -> {
                         entries.add(ModBlocks.BLAST_PROOF_GLASS);
                         entries.add(ModBlocks.ALUMINUM_WIRE);
+                        entries.add(ModBlocks.CIRCUIT_FABRICATOR);
                         entries.add(ModBlocks.ALUMINUM_ORE);
                         entries.add(ModBlocks.TIN_ORE);
                         entries.add(ModBlocks.SILICON_ORE);

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "galaxy-remastered-edition:block/circuit_fabricator"
+    },
+    "facing=south": {
+      "model": "galaxy-remastered-edition:block/circuit_fabricator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "galaxy-remastered-edition:block/circuit_fabricator",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "galaxy-remastered-edition:block/circuit_fabricator",
+      "y": 90
+    }
+  }
+}

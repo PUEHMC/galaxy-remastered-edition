@@ -111,7 +111,19 @@ public class AluminumWireBlock extends Block implements Waterloggable {
     private boolean canConnect(BlockView world, BlockPos pos, Direction direction) {
         BlockPos neighborPos = pos.offset(direction);
         BlockState neighborState = world.getBlockState(neighborPos);
-        return neighborState.isOf(this);
+        
+        // 可以连接到同类型的铝线
+        if (neighborState.isOf(this)) {
+            return true;
+        }
+        
+        // 可以连接到实现了AluminumWireConnectable接口的方块
+        if (neighborState.getBlock() instanceof AluminumWireConnectable) {
+            AluminumWireConnectable connectable = (AluminumWireConnectable) neighborState.getBlock();
+            return connectable.canConnectAluminumWire(neighborState, direction.getOpposite());
+        }
+        
+        return false;
     }
 
     private BooleanProperty getPropertyForDirection(Direction direction) {

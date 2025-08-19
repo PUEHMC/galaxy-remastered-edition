@@ -126,6 +126,10 @@ public class VerticalSlabDataGenerator {
             
             // 生成铝线方块模型
             generateAluminumWireModels(blockStateModelGenerator);
+            
+            // 生成元件制造台模型 - 由于已手动创建模型文件，只需注册物品模型
+            Identifier circuitFabricatorModel = new Identifier("galaxy-remastered-edition", "block/circuit_fabricator");
+            blockStateModelGenerator.registerParentedItemModel(ModBlocks.CIRCUIT_FABRICATOR, circuitFabricatorModel);
 		}
 
 		@Override
@@ -255,12 +259,11 @@ public class VerticalSlabDataGenerator {
 	}
 		
 		private void generateAluminumWireModels(BlockStateModelGenerator generator) {
-			// 铝线模型文件已手动创建，只生成方块状态和物品模型
+			// 铝线模型文件已手动创建，只生成物品模型
 			Identifier centerModel = new Identifier("galaxy-remastered-edition", "block/aluminum_wire_center");
-			Identifier sideModel = new Identifier("galaxy-remastered-edition", "block/aluminum_wire_side");
 			
-			// 生成方块状态文件
-			generator.blockStateCollector.accept(createAluminumWireBlockState(ModBlocks.ALUMINUM_WIRE, centerModel, sideModel));
+			// 方块状态文件已手动创建在resources文件夹中，不再自动生成
+			// generator.blockStateCollector.accept(createAluminumWireBlockState(ModBlocks.ALUMINUM_WIRE, centerModel, sideModel));
 			
 			// 注册物品模型
 			generator.registerParentedItemModel(ModBlocks.ALUMINUM_WIRE, centerModel);

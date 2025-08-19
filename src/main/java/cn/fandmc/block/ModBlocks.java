@@ -4,6 +4,7 @@ import cn.fandmc.Main;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -177,7 +178,17 @@ public class ModBlocks {
     
     // 铝线
     public static final Block ALUMINUM_WIRE = registerBlock("aluminum_wire",
-            new AluminumWireBlock(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).nonOpaque()));
+            new AluminumWireBlock(AbstractBlock.Settings.create()
+                    .hardness(0.2f)  // 0.2秒挖掘时间
+                    .resistance(0.2f)  // 低爆炸抗性
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.METAL)));
+    
+    // 元件制造台
+    public static final Block CIRCUIT_FABRICATOR = registerBlock("circuit_fabricator",
+            new CircuitFabricatorBlock(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
+                    .requiresTool() // 需要工具挖掘
+                    .strength(5.0f, 6.0f))); // 硬度和爆炸抗性
     
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

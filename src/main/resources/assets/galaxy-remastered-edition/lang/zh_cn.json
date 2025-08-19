@@ -130,9 +130,11 @@
   "block.galaxy-remastered-edition.tin_block": "锡块",
   "block.galaxy-remastered-edition.meteoric_iron_block": "陨铁块",
   "block.galaxy-remastered-edition.aluminum_wire": "铝线",
+  "block.galaxy-remastered-edition.circuit_fabricator": "元件制造台",
   "itemgroup.galaxy-remastered-edition.wires_and_materials": "线材和原材料",
   "itemgroup.galaxy-remastered-edition.galaxy_blocks": "星系-方块",
   "key.category.galaxy-remastered-edition.galaxy": "星系重制版",
   "key.galaxy-remastered-edition.open_star_map": "打开星图",
-  "gui.galaxy-remastered-edition.star_map": "星图"
+  "gui.galaxy-remastered-edition.star_map": "星图",
+  "container.galaxy-remastered-edition.circuit_fabricator": "元件制造台"
 }

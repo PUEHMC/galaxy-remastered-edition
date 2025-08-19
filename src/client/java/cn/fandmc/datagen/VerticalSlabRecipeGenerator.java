@@ -14,6 +14,7 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
@@ -108,6 +109,9 @@ public class VerticalSlabRecipeGenerator extends FabricRecipeProvider {
         
         // 创建铝线配方
         createAluminumWireRecipe(exporter);
+        
+        // 创建元件制造台配方
+        createCircuitFabricatorRecipe(exporter);
     }
     
     private void createVerticalSlabRecipes(Consumer<RecipeJsonProvider> exporter, ItemConvertible input, Block output, String name) {
@@ -412,11 +416,39 @@ public class VerticalSlabRecipeGenerator extends FabricRecipeProvider {
     }
     
     private void createAluminumWireRecipe(Consumer<RecipeJsonProvider> exporter) {
-        // 铝线配方 - 3个铝锭合成8个铝线
-        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.ALUMINUM_WIRE, 8)
+        // 铝线配方 - 上面3个羊毛，中间3个铝锭，下面3个羊毛，任何颜色的羊毛都可以
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.ALUMINUM_WIRE, 6)
+            .pattern("WWW")
             .pattern("AAA")
+            .pattern("WWW")
+            .input('W', Ingredient.fromTag(ItemTags.WOOL))
             .input('A', ModItems.ALUMINUM_INGOT)
             .criterion(hasItem(ModItems.ALUMINUM_INGOT), conditionsFromItem(ModItems.ALUMINUM_INGOT))
+            .criterion("has_wool", conditionsFromTag(ItemTags.WOOL))
+            .offerTo(exporter);
+    }
+    
+    private void createCircuitFabricatorRecipe(Consumer<RecipeJsonProvider> exporter) {
+        // 元件制造台配方
+        // 铝锭 拉杆 铝锭
+        // 按钮 熔炉 按钮
+        // 铝线 红石火把 铝线
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.CIRCUIT_FABRICATOR)
+            .pattern("ALA")
+            .pattern("BFB")
+            .pattern("WTW")
+            .input('A', ModItems.ALUMINUM_INGOT)
+            .input('L', Items.LEVER)
+            .input('B', Items.STONE_BUTTON)
+            .input('F', Items.FURNACE)
+            .input('W', ModBlocks.ALUMINUM_WIRE)
+            .input('T', Items.REDSTONE_TORCH)
+            .criterion(hasItem(ModItems.ALUMINUM_INGOT), conditionsFromItem(ModItems.ALUMINUM_INGOT))
+            .criterion(hasItem(Items.LEVER), conditionsFromItem(Items.LEVER))
+            .criterion(hasItem(Items.STONE_BUTTON), conditionsFromItem(Items.STONE_BUTTON))
+            .criterion(hasItem(Items.FURNACE), conditionsFromItem(Items.FURNACE))
+            .criterion(hasItem(ModBlocks.ALUMINUM_WIRE), conditionsFromItem(ModBlocks.ALUMINUM_WIRE))
+            .criterion(hasItem(Items.REDSTONE_TORCH), conditionsFromItem(Items.REDSTONE_TORCH))
             .offerTo(exporter);
     }
 }

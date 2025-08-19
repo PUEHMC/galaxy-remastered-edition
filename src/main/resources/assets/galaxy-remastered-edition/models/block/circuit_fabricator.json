@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "galaxy-remastered-edition:block/machine",
+    "up": "galaxy-remastered-edition:block/machine",
+    "north": "galaxy-remastered-edition:block/circuit_fabricator",
+    "south": "galaxy-remastered-edition:block/machine_side",
+    "west": "galaxy-remastered-edition:block/machine_side",
+    "east": "galaxy-remastered-edition:block/machine_input",
+    "particle": "galaxy-remastered-edition:block/circuit_fabricator"
+  }
+}

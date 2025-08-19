@@ -1,0 +1,58 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "galaxy-remastered-edition:block/aluminum_wire_center"
+      }
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "galaxy-remastered-edition:block/aluminum_wire_side"
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "galaxy-remastered-edition:block/aluminum_wire_side",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "galaxy-remastered-edition:block/aluminum_wire_east"
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "galaxy-remastered-edition:block/aluminum_wire_west"
+      }
+    },
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": {
+        "model": "galaxy-remastered-edition:block/aluminum_wire_up"
+      }
+    },
+    {
+      "when": {
+        "down": "true"
+      },
+      "apply": {
+        "model": "galaxy-remastered-edition:block/aluminum_wire_down"
+      }
+    }
+  ]
+}

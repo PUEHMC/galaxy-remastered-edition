@@ -1,7 +1,9 @@
 package cn.fandmc;
 
 import cn.fandmc.block.ModBlocks;
+import cn.fandmc.blockentity.ModBlockEntities;
 import cn.fandmc.item.ModItems;
+import cn.fandmc.screen.ModScreenHandlers;
 import cn.fandmc.worldgen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -23,6 +25,8 @@ public class Main implements ModInitializer {
 
 		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
+		ModBlockEntities.registerBlockEntities();
+		ModScreenHandlers.registerScreenHandlers();
 		ModWorldGeneration.generateModWorldGen();
 
 		LOGGER.info("Galaxy - Remastered Edition 模组已加载！");
