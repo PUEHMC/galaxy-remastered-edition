@@ -78,11 +78,13 @@ public class VerticalSlabTagGenerator extends FabricTagProvider.BlockTagProvider
             .add(ModBlocks.ALUMINUM_BLOCK)
             .add(ModBlocks.COPPER_BLOCK)
             .add(ModBlocks.SILICON_BLOCK)
-            .add(ModBlocks.TIN_BLOCK);
+            .add(ModBlocks.TIN_BLOCK)
+            .add(ModBlocks.CIRCUIT_FABRICATOR);
         
-        // 防爆玻璃需要铁镐挖掘
+        // 防爆玻璃和元件制造台需要铁镐挖掘
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
-            .add(ModBlocks.BLAST_PROOF_GLASS);
+            .add(ModBlocks.BLAST_PROOF_GLASS)
+            .add(ModBlocks.CIRCUIT_FABRICATOR);
         
         // 铝矿石、锡矿石、硅矿石和铜矿石需要石镐挖掘
         getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
